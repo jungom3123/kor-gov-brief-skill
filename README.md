@@ -1,4 +1,4 @@
-# rnd-reference-deck-style
+# kor-gov-brief-skill
 
 **English** · [한국어 README](README.ko.md)
 
@@ -46,9 +46,9 @@ A few findings: about 85% of the 225 slide decks use a single navy/blue palette,
 ### Claude Code
 
 ```bash
-git clone https://github.com/jungom3123/rnd-reference-deck-style.git
+git clone https://github.com/jungom3123/kor-gov-brief-skill.git
 mkdir -p ~/.claude/skills
-cp -r rnd-reference-deck-style/skills/rnd-reference-deck-style ~/.claude/skills/
+cp -r kor-gov-brief-skill/skills/rnd-reference-deck-style ~/.claude/skills/
 ```
 
 To use it in one project only, copy it into that project's `.claude/skills/` instead.
@@ -56,7 +56,7 @@ To use it in one project only, copy it into that project's `.claude/skills/` ins
 ### Claude app (claude.ai)
 
 ```bash
-cd rnd-reference-deck-style/skills
+cd kor-gov-brief-skill/skills
 zip -r rnd-reference-deck-style.zip rnd-reference-deck-style
 ```
 
@@ -85,7 +85,7 @@ Claude picks a style family for the use case, assigns a layout type to each slid
 ## What's in the repo
 
 ```text
-rnd-reference-deck-style/
+kor-gov-brief-skill/
 ├── skills/rnd-reference-deck-style/   ← the skill itself
 │   ├── SKILL.md                       design rules and workflow
 │   └── references/
