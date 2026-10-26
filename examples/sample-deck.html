@@ -2,170 +2,320 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>예시 발표자료: 문서 업무 자동화 도입 제안</title>
+<title>예시 발표자료: 설비 예지보전 플랫폼 도입 제안</title>
 <style>
-  /* SKILL.md "기본 디자인 규칙"을 그대로 옮긴 토큰 */
+  /* SKILL.md §2 색·치수 토큰 (1920×1080 기준). 내용은 모두 가상 */
   :root {
-    --navy: #1D3466; --blue: #2A70BE; --card: #EAF1FA; --red: #E1614F;
-    --ink: #1f2937; --muted: #6b7280; --line: #d6e0ee;
+    --navy:#1D3466; --blue:#2A70BE; --sky:#8FC1F2; --card:#EAF1FA; --gray:#8A94A6;
+    --line:#D6E0EE; --ink:#1F2937; --muted:#6B7280; --red:#E1614F; --yellow:#FFD400;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color: var(--ink); background: #888; }
-  .slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #fff; margin: 0 auto 40px; }
-  .pad { padding: 0 80px; }
-  .bar { height: 110px; display: flex; align-items: center; gap: 24px; border-bottom: 3px solid var(--navy); }
-  .bar .no { font-size: 28px; font-weight: 800; color: var(--blue); }
-  .bar h2 { font-size: 40px; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; }
-  .msg { margin-top: 44px; font-size: 34px; font-weight: 700; color: var(--navy); }
-  .msg em { font-style: normal; color: var(--red); }
-  .foot { position: absolute; left: 80px; right: 80px; bottom: 36px; display: flex; justify-content: space-between; font-size: 18px; color: var(--muted); }
-  .red { color: var(--red); }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);background:#888}
+  .slide{width:1920px;height:1080px;position:relative;overflow:hidden;background:#fff;margin:0 auto 40px;font-size:30px;line-height:1.45}
+  b{font-weight:700} em{font-style:normal;color:var(--blue);font-weight:700}
+  .pg{position:absolute;right:80px;bottom:40px;font-size:20px;color:var(--muted)}
+  .src{position:absolute;left:80px;bottom:40px;font-size:20px;color:var(--muted)}
+  /* 제목 바 1형: 전폭 네이비 120px, 좌 번호 박스 */
+  .bar{height:120px;background:var(--navy);color:#fff;display:flex;align-items:center;padding:0 80px;gap:28px;position:relative;overflow:hidden}
+  .bar:after{content:"";position:absolute;right:0;top:0;width:520px;height:120px;background:linear-gradient(100deg,transparent 40%,rgba(143,193,242,.25) 40%)}
+  .bar .no{width:92px;height:92px;border:3px solid rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:700;color:var(--sky)}
+  .bar .t small{display:block;font-size:22px;opacity:.75;margin-bottom:2px}
+  .bar .t h2{font-size:58px;font-weight:700;letter-spacing:-1px;line-height:1.15}
+  .body{padding:0 80px}
+  /* 라벨 박스 + 핵심 문장 */
+  .lead{display:flex;align-items:center;gap:28px;margin-top:44px}
+  .lead .lb{background:var(--navy);color:#fff;font-size:32px;font-weight:700;padding:10px 30px;border-radius:12px;white-space:nowrap}
+  .lead p{font-size:46px;font-weight:700;color:var(--navy);letter-spacing:-.5px}
+  .pill{display:inline-block;border-radius:999px;background:var(--navy);color:#fff;font-weight:700;font-size:34px;padding:8px 44px}
+  .band{position:absolute;left:0;right:0;bottom:0;height:210px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-size:44px;font-weight:700;line-height:1.35}
+  .band em{color:var(--sky)}
 
-  /* 01 표지 */
-  .cover { background: linear-gradient(120deg, var(--navy) 0%, #23427e 60%, var(--blue) 100%); color: #fff; }
-  .cover .tag { position: absolute; left: 120px; top: 300px; font-size: 26px; font-weight: 600; letter-spacing: 2px; opacity: .8; }
-  .cover h1 { position: absolute; left: 120px; top: 350px; font-size: 88px; font-weight: 800; line-height: 1.2; letter-spacing: -1.5px; }
-  .cover .sub { position: absolute; left: 120px; top: 600px; font-size: 32px; font-weight: 500; opacity: .9; }
-  .cover .meta { position: absolute; left: 120px; bottom: 110px; font-size: 24px; opacity: .75; }
-  .cover .deco { position: absolute; right: -160px; top: 140px; width: 800px; height: 800px; border-radius: 50%; border: 2px solid rgba(255,255,255,.18); }
-  .cover .deco2 { position: absolute; right: 40px; top: 340px; width: 400px; height: 400px; border-radius: 50%; background: rgba(255,255,255,.07); }
+  /* 01 표지: 전면 네이비 + 좌측 정렬 텍스트 + 우측 선 그래픽 */
+  .cover{background:linear-gradient(115deg,#13214E 0%,var(--navy) 55%,#2B4C8C 100%);color:#fff}
+  .cover .ring{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.14)}
+  .cover .kicker{position:absolute;left:120px;top:300px;font-size:30px;letter-spacing:4px;color:var(--sky);font-weight:600}
+  .cover h1{position:absolute;left:120px;top:360px;font-size:104px;font-weight:700;line-height:1.2;letter-spacing:-2px}
+  .cover .sub{position:absolute;left:120px;top:640px;font-size:34px;font-weight:300;opacity:.9}
+  .cover .meta{position:absolute;left:120px;bottom:100px;font-size:24px;opacity:.75;display:flex;gap:40px}
+  .cover .rule{position:absolute;left:120px;top:610px;width:120px;height:4px;background:var(--sky)}
 
-  /* 04 핵심메시지·수치강조 */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 70px; }
-  .stat { background: var(--card); border-radius: 20px; padding: 56px 48px; height: 470px; display: flex; flex-direction: column; }
-  .stat .lbl { font-size: 28px; font-weight: 700; color: var(--navy); }
-  .stat .num { margin-top: 40px; font-size: 150px; font-weight: 800; color: var(--navy); line-height: 1; letter-spacing: -4px; }
-  .stat .num small { font-size: 48px; font-weight: 700; letter-spacing: 0; margin-left: 6px; }
-  .stat .num.red { color: var(--red); }
-  .stat .desc { margin-top: auto; font-size: 24px; line-height: 1.5; color: var(--ink); }
+  /* 02 목차: 상단 밴드 28% + 가로 4항목 번호 타일 */
+  .toc-band{height:300px;background:var(--navy);color:#fff;padding:0 120px;display:flex;align-items:center;justify-content:space-between}
+  .toc-band h2{font-size:110px;font-weight:700;letter-spacing:-2px}
+  .toc-band h2 span{color:var(--sky)}
+  .toc-band p{font-size:26px;opacity:.75}
+  .toc{display:grid;grid-template-columns:repeat(4,1fr);margin:150px 120px 0;gap:0}
+  .toc .it{text-align:center;padding:0 30px;border-left:1px solid var(--line)}
+  .toc .it:first-child{border-left:0}
+  .toc .num{width:170px;height:170px;border-radius:28px;background:var(--card);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:700;color:var(--navy)}
+  .toc h3{margin-top:36px;font-size:42px;font-weight:700;color:var(--navy)}
+  .toc p{margin-top:12px;font-size:26px;color:var(--muted)}
 
-  /* 06 As-Is / To-Be */
-  .compare { display: grid; grid-template-columns: 1fr 120px 1fr; margin-top: 60px; align-items: stretch; }
-  .col { border-radius: 20px; overflow: hidden; height: 640px; }
-  .col h3 { font-size: 34px; font-weight: 800; padding: 28px 48px; color: #fff; }
-  .asis { border: 2px solid var(--line); } .asis h3 { background: #8a94a6; }
-  .tobe { border: 2px solid var(--blue); } .tobe h3 { background: var(--navy); }
-  .col ul { list-style: none; padding: 40px 48px; }
-  .col li { font-size: 28px; line-height: 1.5; padding: 18px 0; border-bottom: 1px dashed var(--line); }
-  .col li b { color: var(--navy); }
-  .tobe { background: var(--card); }
-  .arrow { display: flex; align-items: center; justify-content: center; }
-  .arrow div { width: 0; height: 0; border-top: 50px solid transparent; border-bottom: 50px solid transparent; border-left: 60px solid var(--red); }
+  /* 04 핵심 메시지: 헤드라인 + 좌 숫자/우 패널 + 하단 결론 띠 */
+  .km h2{margin-top:70px;text-align:center;font-size:76px;font-weight:700;color:var(--navy);letter-spacing:-1.5px}
+  .km .two{display:grid;grid-template-columns:40fr 60fr;gap:60px;margin-top:70px;height:430px}
+  .km .l{border-right:2px solid var(--line);padding-right:40px}
+  .km .l p{font-size:34px}
+  .km .big{font-size:140px;font-weight:700;color:var(--blue);line-height:1;letter-spacing:-4px;margin-top:20px}
+  .km .big small{font-size:46px;letter-spacing:0;margin-left:8px;color:var(--navy)}
+  .km .r{background:#DCEBFB;border-radius:20px;padding:40px 48px}
+  .km .r h4{font-size:32px;font-weight:700;color:var(--navy);margin-bottom:28px}
+  .km .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .km .g{background:#fff;border-radius:14px;padding:24px;text-align:center}
+  .km .g .k{font-size:24px;color:var(--muted)}
+  .km .g .v{font-size:44px;font-weight:700;color:var(--navy);margin-top:6px}
+  .km .g .v i{font-style:normal;font-size:24px;color:var(--gray);text-decoration:line-through;margin-right:10px;font-weight:400}
 
-  /* 07 카드형 전략과제 */
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 64px; }
-  .cardx { border-top: 10px solid var(--navy); background: var(--card); border-radius: 0 0 20px 20px; padding: 48px 44px; height: 600px; }
-  .cardx:nth-child(2) { border-color: var(--blue); }
-  .cardx:nth-child(3) { border-color: var(--red); }
-  .cardx .k { font-size: 24px; font-weight: 800; color: var(--blue); letter-spacing: 1px; }
-  .cardx h4 { margin-top: 16px; font-size: 40px; font-weight: 800; color: var(--navy); line-height: 1.3; }
-  .cardx ul { margin-top: 36px; padding-left: 28px; }
-  .cardx li { font-size: 26px; line-height: 1.6; margin-bottom: 12px; }
+  /* 06 차트: 전(회색)→후(블루) 쌍 막대 + 우측 결론 카드 */
+  .ch{display:grid;grid-template-columns:55fr 45fr;gap:50px;margin-top:40px}
+  .chart{background:#fff;border:1px solid var(--line);border-radius:20px;padding:40px 48px;height:720px;position:relative}
+  .chart .ct{font-size:32px;font-weight:700;color:var(--navy)}
+  .chart .unit{position:absolute;right:48px;top:46px;font-size:20px;color:var(--muted)}
+  .chart .lg{position:absolute;left:48px;top:100px;font-size:22px;color:var(--muted);display:flex;gap:24px}
+  .chart .lg i{display:inline-block;width:22px;height:22px;vertical-align:-3px;margin-right:6px}
+  .bars{position:absolute;left:48px;right:48px;bottom:100px;height:440px;display:flex;align-items:flex-end;justify-content:space-around;border-bottom:2px solid var(--line)}
+  .bars .gl{position:absolute;left:0;right:0;border-top:1px solid #EEF2F7}
+  .grp{display:flex;gap:12px;align-items:flex-end;position:relative}
+  .grp div{width:84px;border-radius:6px 6px 0 0;position:relative}
+  .grp .a{background:var(--gray)} .grp .b{background:var(--blue)}
+  .grp div span{position:absolute;left:50%;transform:translateX(-50%);top:-38px;font-size:24px;font-weight:700;white-space:nowrap}
+  .grp .a span{color:var(--gray);font-weight:400} .grp .b span{color:var(--blue)}
+  .grp .delta{position:absolute;left:50%;transform:translateX(-50%);top:-96px;font-size:26px;font-weight:700;color:var(--red);white-space:nowrap}
+  .xl{position:absolute;left:48px;right:48px;bottom:50px;display:flex;justify-content:space-around;font-size:24px;color:var(--ink)}
+  .concl{display:flex;flex-direction:column;gap:30px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 36px;box-shadow:0 6px 18px rgba(29,52,102,.08)}
+  .cc .lb{display:inline-block;background:var(--navy);color:#fff;font-size:24px;font-weight:700;padding:4px 22px;border-radius:8px;margin-right:18px}
+  .cc .n{font-size:40px;font-weight:700;color:var(--navy)} .cc .n i{font-style:normal;font-size:26px;color:var(--gray);font-weight:400;margin-right:10px}
+  .cc ul{list-style:none;margin-top:14px} .cc li{font-size:26px;padding:4px 0} .cc li:before{content:"✓";color:var(--blue);font-weight:700;margin-right:12px}
 
-  /* 09 타임라인 */
-  .tl { position: relative; margin-top: 150px; height: 520px; }
-  .tl .line { position: absolute; left: 0; right: 0; top: 60px; height: 8px; background: var(--line); border-radius: 4px; }
-  .tl .line i { position: absolute; left: 0; top: 0; bottom: 0; width: 38%; background: var(--navy); border-radius: 4px; }
-  .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-  .step .dot { width: 128px; height: 128px; border-radius: 50%; background: #fff; border: 8px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: var(--navy); }
-  .step.now .dot { background: var(--navy); color: #fff; }
-  .step.next .dot { border-color: var(--line); color: var(--muted); }
-  .step h5 { margin-top: 36px; font-size: 34px; font-weight: 800; color: var(--navy); }
-  .step p { margin-top: 14px; font-size: 25px; line-height: 1.55; }
+  /* 07 As-Is / To-Be: 사선 접합 밴드 + 3열 */
+  .ab{position:relative;height:120px;margin-top:40px;display:flex}
+  .ab .asis{flex:0 0 42%;background:var(--gray);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;clip-path:polygon(0 0,100% 0,calc(100% - 60px) 100%,0 100%)}
+  .ab .tobe{flex:1;margin-left:-60px;background:linear-gradient(90deg,var(--blue),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700;clip-path:polygon(60px 0,100% 0,100% 100%,0 100%)}
+  .ab .cap{position:absolute;top:-44px;font-size:28px;color:var(--gray);font-weight:600}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;margin-top:70px}
+  .col{position:relative;padding-top:60px}
+  .col+.col:before{content:"";position:absolute;left:-25px;top:0;bottom:0;border-left:2px dashed var(--line)}
+  .col .n{position:absolute;left:50%;top:-20px;transform:translateX(-50%);width:150px;height:76px;border-radius:76px 76px 0 0;background:#DCEBFB;color:var(--navy);font-size:40px;font-weight:700;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px}
+  .col .hd{border-top:4px solid var(--navy);text-align:center;padding-top:24px}
+  .col .hd small{display:block;font-size:26px;color:var(--ink)} .col .hd b{font-size:46px;color:var(--navy);letter-spacing:-1px}
+  .col ul{list-style:none;margin-top:34px;padding:0 20px} .col li{font-size:28px;padding:10px 0}
+  .col li:before{content:"✓";color:var(--blue);font-weight:700;margin-right:12px}
+  .col .box{margin:30px 20px 0;background:var(--card);border-radius:14px;padding:22px 26px;font-size:24px;color:var(--navy)}
 
-  /* 13 마무리 */
-  .end { background: var(--navy); color: #fff; display: flex; flex-direction: column; justify-content: center; padding-left: 120px; }
-  .end .q { font-size: 30px; font-weight: 600; opacity: .7; letter-spacing: 2px; }
-  .end h1 { margin-top: 28px; font-size: 80px; font-weight: 800; line-height: 1.25; letter-spacing: -1.5px; }
-  .end h1 em { font-style: normal; color: #ffb4a8; }
-  .end .ask { margin-top: 60px; display: flex; gap: 24px; }
-  .end .ask span { font-size: 28px; padding: 18px 34px; border: 2px solid rgba(255,255,255,.5); border-radius: 40px; }
+  /* 08 카드형 전략과제: 2×2, 알약 헤더 카드 위 걸침 */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:40px 60px;margin-top:70px}
+  .cd{background:#fff;border:1px solid var(--line);border-radius:12px;padding:70px 44px 36px;position:relative;height:340px;box-shadow:0 6px 18px rgba(29,52,102,.06)}
+  .cd .ph{position:absolute;left:44px;right:44px;top:-32px;height:64px;border-radius:999px;color:#fff;font-size:36px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .cd ul{list-style:none} .cd li{font-size:30px;padding:8px 0 8px 28px;position:relative} .cd li:before{content:"•";position:absolute;left:4px;color:var(--navy)}
+  .cd li small{display:block;font-size:22px;color:var(--muted);margin-top:4px}
+  .c1 .ph{background:#152A58} .c2 .ph{background:var(--blue)} .c3 .ph{background:#1E8A86} .c4 .ph{background:#6657B5}
+
+  /* 10 프로세스: 상단 타임라인 + 쉐브론 5단계 + 설명 박스 */
+  .tl{position:relative;height:90px;margin-top:60px;border-bottom:2px dotted var(--gray)}
+  .tl .m{position:absolute;bottom:-11px;width:20px;height:20px;border-radius:50%;background:var(--blue);border:4px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+  .tl .d{position:absolute;bottom:26px;transform:translateX(-50%);font-size:26px;color:var(--navy);font-weight:600;white-space:nowrap}
+  .chev{display:flex;margin-top:40px;gap:6px}
+  .chev div{flex:1;height:170px;color:#fff;font-size:40px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;clip-path:polygon(0 0,calc(100% - 44px) 0,100% 50%,calc(100% - 44px) 100%,0 100%,44px 50%)}
+  .chev div:first-child{clip-path:polygon(0 0,calc(100% - 44px) 0,100% 50%,calc(100% - 44px) 100%,0 100%)}
+  .chev .n{background:var(--navy)} .chev .s{background:#BBD4EE;color:var(--navy)}
+  .desc{display:flex;gap:6px;margin-top:30px}
+  .desc div{flex:1}
+  .desc .h{border:2px solid var(--navy);color:var(--navy);font-size:28px;font-weight:700;text-align:center;padding:22px 10px;background:#fff}
+  .desc .p{background:#F3F5F9;font-size:22px;color:var(--muted);text-align:center;padding:22px 16px;min-height:180px;line-height:1.5}
+
+  /* 13 표: 요약 문장 + 표 1개 */
+  .sum{margin-top:40px;font-size:40px;font-weight:700;color:var(--blue)}
+  .sum:before{content:"»";margin-right:14px}
+  table{width:100%;border-collapse:collapse;margin-top:30px}
+  th{background:var(--navy);color:#fff;font-size:26px;font-weight:700;padding:18px 20px}
+  td{font-size:26px;padding:16px 20px;border-bottom:1px solid var(--line);text-align:center}
+  td:first-child{text-align:left;padding-left:30px}
+  tr:nth-child(even) td{background:#F7F9FC}
+  tr.tot td{background:#FBEFEA;font-weight:700;color:var(--red);border-bottom:0}
+  tr.tot td:first-child{color:var(--ink)}
+  .new{display:inline-block;background:var(--red);color:#fff;font-size:18px;font-weight:700;padding:2px 12px;border-radius:6px;margin-left:12px;vertical-align:2px}
+  .unit{position:absolute;right:80px;top:200px;font-size:20px;color:var(--muted)}
+
+  /* 16 마무리: 표지와 같은 계열, 큰 인사 + 메시지 + 연락처 박스 */
+  .end{background:linear-gradient(115deg,#13214E 0%,var(--navy) 55%,#2B4C8C 100%);color:#fff}
+  .end h1{position:absolute;left:120px;top:300px;font-size:140px;font-weight:700;letter-spacing:-3px}
+  .end p{position:absolute;left:120px;top:520px;font-size:48px;line-height:1.5;font-weight:400}
+  .end p em{color:var(--sky)}
+  .end .contact{position:absolute;left:120px;bottom:100px;background:rgba(0,0,0,.35);border-radius:12px;padding:24px 36px;font-size:26px;line-height:1.6}
+  .end .contact b{color:var(--sky);margin-right:16px}
 </style>
 </head>
 <body>
 
 <!-- 01 표지 -->
-<section class="slide cover" id="s1">
-  <div class="deco"></div><div class="deco2"></div>
-  <div class="tag">사내 업무 보고 · 예시</div>
-  <h1>문서 업무 자동화<br>도입 제안</h1>
-  <div class="sub">반복 보고서 작성 시간을 절반으로 줄이는 3단계 계획</div>
-  <div class="meta">2026. 10. 경영지원팀</div>
+<section class="slide cover">
+  <div class="ring" style="right:-300px;top:-200px;width:1100px;height:1100px"></div>
+  <div class="ring" style="right:-120px;top:120px;width:760px;height:760px"></div>
+  <div class="ring" style="right:60px;top:380px;width:420px;height:420px;background:rgba(143,193,242,.08)"></div>
+  <div class="kicker">2026 설비관리 혁신 제안</div>
+  <h1>설비 예지보전 플랫폼<br>도입 제안</h1>
+  <div class="rule"></div>
+  <div class="sub">돌발 정지를 줄이고 정비를 계획으로 바꾸는 3개년 계획</div>
+  <div class="meta"><span>2026. 11.</span><span>생산기술팀</span></div>
 </section>
 
-<!-- 04 핵심메시지 + 수치강조 -->
-<section class="slide" id="s2">
-  <div class="pad">
-    <div class="bar"><span class="no">01</span><h2>현황 진단</h2></div>
-    <p class="msg">팀 업무시간의 <em>3분의 1</em>이 같은 형식의 문서를 반복해 만드는 데 쓰입니다</p>
-    <div class="stats">
-      <div class="stat"><div class="lbl">주간 반복 문서</div><div class="num">42<small>건</small></div><div class="desc">주간·월간 보고, 회의록, 구매 품의 등 형식이 정해진 문서</div></div>
-      <div class="stat"><div class="lbl">1인당 작성 시간</div><div class="num red">13<small>시간/주</small></div><div class="desc">전체 근무시간 40시간 중 약 33%를 차지</div></div>
-      <div class="stat"><div class="lbl">수정 요청 비율</div><div class="num">27<small>%</small></div><div class="desc">양식 누락·수치 오기로 다시 작성하는 문서의 비중</div></div>
-    </div>
+<!-- 02 목차 -->
+<section class="slide">
+  <div class="toc-band"><h2><span>C</span>ontents</h2><p>설비 예지보전 플랫폼 도입 제안</p></div>
+  <div class="toc">
+    <div class="it"><div class="num">Ⅰ</div><h3>현황과 문제</h3><p>돌발 정지 비용 · 정비 방식</p></div>
+    <div class="it"><div class="num">Ⅱ</div><h3>도입 방향</h3><p>As-Is → To-Be · 4대 과제</p></div>
+    <div class="it"><div class="num">Ⅲ</div><h3>추진 계획</h3><p>단계 · 일정 · 투자</p></div>
+    <div class="it"><div class="num">Ⅳ</div><h3>기대 효과</h3><p>정지 시간 · 정비비 · 안전</p></div>
   </div>
-  <div class="foot"><span>* 예시용 가상 수치입니다</span><span>2</span></div>
 </section>
 
-<!-- 06 As-Is / To-Be -->
-<section class="slide" id="s3">
-  <div class="pad">
-    <div class="bar"><span class="no">02</span><h2>바뀌는 모습</h2></div>
-    <p class="msg">사람은 <em>판단과 검토</em>에, 반복 작성은 자동화 도구에 맡깁니다</p>
-    <div class="compare">
-      <div class="col asis"><h3>As-Is · 지금</h3><ul>
-        <li>엑셀에서 수치를 복사해 보고서에 붙여넣기</li>
-        <li>지난 보고서를 열어 형식을 맞춰 다시 작성</li>
-        <li>팀장 검토 후 오탈자·수치 수정 반복</li>
-        <li>문서마다 파일명·보관 위치가 제각각</li></ul></div>
-      <div class="arrow"><div></div></div>
-      <div class="col tobe"><h3>To-Be · 도입 후</h3><ul>
-        <li>데이터 연결로 <b>수치 자동 반영</b></li>
-        <li>표준 양식에서 <b>초안 자동 생성</b></li>
-        <li>담당자는 <b>핵심 판단·코멘트</b>만 작성</li>
-        <li>공용 폴더에 <b>규칙대로 자동 저장</b></li></ul></div>
-    </div>
-  </div>
-  <div class="foot"><span>예시 발표자료</span><span>3</span></div>
-</section>
-
-<!-- 07 카드형 전략과제 -->
-<section class="slide" id="s4">
-  <div class="pad">
-    <div class="bar"><span class="no">03</span><h2>추진 과제</h2></div>
-    <p class="msg">세 가지 과제를 순서대로 진행해 위험을 나눠서 줄입니다</p>
-    <div class="cards">
-      <div class="cardx"><div class="k">TASK 1</div><h4>표준 양식<br>정리</h4><ul><li>반복 문서 42종을 12개 양식으로 통합</li><li>필수 항목·용어 기준 확정</li></ul></div>
-      <div class="cardx"><div class="k">TASK 2</div><h4>자동 초안<br>시범 운영</h4><ul><li>주간 보고·회의록 2종부터 적용</li><li>작성 시간과 수정률을 매주 측정</li></ul></div>
-      <div class="cardx"><div class="k">TASK 3</div><h4>전사 확대와<br>교육</h4><ul><li>효과가 확인된 양식부터 단계적 확대</li><li>팀별 담당자 1명씩 활용 교육</li></ul></div>
-    </div>
-  </div>
-  <div class="foot"><span>예시 발표자료</span><span>4</span></div>
-</section>
-
-<!-- 09 타임라인 -->
-<section class="slide" id="s5">
-  <div class="pad">
-    <div class="bar"><span class="no">04</span><h2>추진 일정</h2></div>
-    <p class="msg">시범 운영 결과를 보고 <em>2027년 2분기</em>에 전사 확대를 결정합니다</p>
-    <div class="tl">
-      <div class="line"><i></i></div>
-      <div class="steps">
-        <div class="step"><div class="dot">11월</div><h5>양식 정리</h5><p>반복 문서 조사<br>표준 양식 12종 확정</p></div>
-        <div class="step now"><div class="dot">12월</div><h5>시범 운영</h5><p>2개 팀, 문서 2종<br>주간 효과 측정</p></div>
-        <div class="step next"><div class="dot">1Q</div><h5>보완</h5><p>현장 의견 반영<br>양식·도구 개선</p></div>
-        <div class="step next"><div class="dot">2Q</div><h5>전사 확대</h5><p>확대 여부 결정<br>팀별 교육 진행</p></div>
+<!-- 04 핵심 메시지·수치 강조 -->
+<section class="slide km">
+  <div class="body">
+    <h2>지난해 돌발 정지 <em>412시간</em>, 정비비의 61%가 사후 대응</h2>
+    <div class="two">
+      <div class="l">
+        <p>3개 공장 돌발 정지 시간 합계<br>(2025년, 생산관리시스템 기준)</p>
+        <div class="big">412<small>시간</small></div>
+        <p style="margin-top:24px;color:var(--muted);font-size:28px">전년 대비 <b style="color:var(--red)">▲ 18%</b> · 라인당 평균 11.6일</p>
+      </div>
+      <div class="r">
+        <h4>정비 유형별 비용 구성 (2025년)</h4>
+        <div class="grid">
+          <div class="g"><div class="k">사후 정비</div><div class="v">61<small style="font-size:24px">%</small></div></div>
+          <div class="g"><div class="k">예방 정비(주기)</div><div class="v">33<small style="font-size:24px">%</small></div></div>
+          <div class="g"><div class="k">예지 정비</div><div class="v">6<small style="font-size:24px">%</small></div></div>
+        </div>
+        <p style="margin-top:28px;font-size:26px;color:var(--navy)">주기 정비는 멀쩡한 부품을 교체하고, 사후 정비는 이미 멈춘 뒤 움직인다.</p>
       </div>
     </div>
   </div>
-  <div class="foot"><span>예시 발표자료</span><span>5</span></div>
+  <div class="band"><span>센서 데이터로 고장을 <em>2주 먼저</em> 알면, 정비의 절반을 <em>계획 정비</em>로 바꿀 수 있다</span></div>
 </section>
 
-<!-- 13 마무리 -->
-<section class="slide end" id="s6">
-  <div class="q">요청 사항</div>
-  <h1>12월 시범 운영을 위해<br><em>2개 팀</em>의 참여를 요청드립니다</h1>
-  <div class="ask"><span>참여 팀 선정</span><span>도구 계정 2개</span><span>주간 30분 피드백</span></div>
+<!-- 06 차트 -->
+<section class="slide">
+  <div class="bar"><div class="no">01</div><div class="t"><small>현황과 문제</small><h2>공장별 돌발 정지 추이</h2></div></div>
+  <div class="body">
+    <div class="ch">
+      <div class="chart">
+        <div class="ct">공장별 연간 돌발 정지 시간</div><div class="unit">(단위: 시간)</div>
+        <div class="lg"><span><i style="background:var(--gray)"></i>2024년</span><span><i style="background:var(--blue)"></i>2025년</span></div>
+        <div class="bars">
+          <div class="gl" style="bottom:110px"></div><div class="gl" style="bottom:220px"></div><div class="gl" style="bottom:330px"></div>
+          <div class="grp"><div class="a" style="height:230px"><span>118</span></div><div class="b" style="height:310px"><span>161</span><b class="delta">▲ 36%</b></div></div>
+          <div class="grp"><div class="a" style="height:260px"><span>134</span></div><div class="b" style="height:280px"><span>145</span><b class="delta">▲ 8%</b></div></div>
+          <div class="grp"><div class="a" style="height:190px"><span>97</span></div><div class="b" style="height:205px"><span>106</span><b class="delta">▲ 9%</b></div></div>
+        </div>
+        <div class="xl"><span>1공장 (프레스)</span><span>2공장 (조립)</span><span>3공장 (도장)</span></div>
+      </div>
+      <div class="concl">
+        <div class="cc"><span class="lb">1공장</span><span class="n"><i>118시간</i>▶ 161시간</span>
+          <ul><li>프레스 베어링 마모가 정지의 48%</li><li>진동 센서만으로 조기 감지 가능</li></ul></div>
+        <div class="cc"><span class="lb">2공장</span><span class="n"><i>134시간</i>▶ 145시간</span>
+          <ul><li>컨베이어 모터 과열, 야간 교대에 집중</li><li>온도·전류 데이터는 이미 수집 중</li></ul></div>
+        <div class="cc"><span class="lb">3공장</span><span class="n"><i>97시간</i>▶ 106시간</span>
+          <ul><li>도장 로봇 펌프 압력 저하</li><li>교체 주기를 상태 기준으로 전환</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="src">출처: 생산관리시스템 정지 이력 (가상 수치)</div><div class="pg">4</div>
+</section>
+
+<!-- 07 As-Is / To-Be -->
+<section class="slide">
+  <div class="bar"><div class="no">02</div><div class="t"><small>도입 방향</small><h2>정비 방식의 전환</h2></div></div>
+  <div class="body">
+    <div class="ab">
+      <span class="cap" style="left:0">As-Is</span><span class="cap" style="right:0">To-Be</span>
+      <div class="asis">고장 난 뒤 고치거나, 주기가 오면 바꾼다</div>
+      <div class="tobe">센서가 보내는 상태 신호로 고장 전에 정비한다</div>
+    </div>
+    <div class="cols">
+      <div class="col"><div class="n">01</div><div class="hd"><small>설비를 지켜보는</small><b>‘상태 감시’ 기반</b></div>
+        <ul><li>진동·온도·전류 센서 1,200개 설치</li><li>5분 주기 수집, 1년 보관</li></ul>
+        <div class="box">▶ 수집 대상: 핵심 설비 86대</div></div>
+      <div class="col"><div class="n">02</div><div class="hd"><small>고장을 미리 아는</small><b>‘예지 모델’ 운영</b></div>
+        <ul><li>설비 유형별 이상 탐지 모델 7종</li><li>2주 전 경보, 정비 작업지시 자동 생성</li></ul>
+        <div class="box">▶ 1차 목표 정확도 85%</div></div>
+      <div class="col"><div class="n">03</div><div class="hd"><small>정비를 계획으로 바꾸는</small><b>‘계획 정비’ 체계</b></div>
+        <ul><li>주간 정비 계획 회의로 작업 배분</li><li>부품 재고를 예측 수요에 연동</li></ul>
+        <div class="box">▶ 사후 정비 비중 61% → 30%</div></div>
+    </div>
+  </div>
+  <div class="pg">5</div>
+</section>
+
+<!-- 08 카드형 전략과제 -->
+<section class="slide">
+  <div class="bar"><div class="no">02</div><div class="t"><small>도입 방향</small><h2>4대 추진 과제</h2></div></div>
+  <div class="body">
+    <div class="lead"><span class="lb">과제</span><p>데이터 → 모델 → 현장 → 사람, <em>네 가지</em>를 같은 속도로</p></div>
+    <div class="cards">
+      <div class="cd c1"><div class="ph">① 센서·데이터 인프라</div>
+        <ul><li>핵심 설비 86대에 <em>센서 1,200개</em> 설치<small>※ 기존 PLC 데이터 42%는 재활용</small></li><li>공장 간 데이터 표준 포맷 통일</li></ul></div>
+      <div class="cd c2"><div class="ph">② 예지 모델 개발</div>
+        <ul><li>베어링·모터·펌프 <em>7종 모델</em> 순차 개발<small>※ 1공장 프레스부터 시범 적용</small></li><li>경보 → 작업지시 자동 연계</li></ul></div>
+      <div class="cd c3"><div class="ph">③ 정비 프로세스 개편</div>
+        <ul><li>주간 <em>계획 정비 회의</em> 신설</li><li>부품 재고를 예측 수요에 연동<small>※ 안전재고 기준 재산정</small></li></ul></div>
+      <div class="cd c4"><div class="ph">④ 현장 역량·운영 체계</div>
+        <ul><li>정비 인력 <em>데이터 해석 교육</em> 24시간</li><li>공장별 예지보전 담당 1명 지정<small>※ 운영 지표를 월간 보고에 포함</small></li></ul></div>
+    </div>
+  </div>
+  <div class="pg">6</div>
+</section>
+
+<!-- 10 프로세스·단계 + 타임라인 -->
+<section class="slide">
+  <div class="bar"><div class="no">03</div><div class="t"><small>추진 계획</small><h2>3개년 추진 단계</h2></div></div>
+  <div class="body">
+    <div class="tl">
+      <span class="d" style="left:10%">’26.12</span><span class="m" style="left:calc(10% - 10px)"></span>
+      <span class="d" style="left:30%">’27.3</span><span class="m" style="left:calc(30% - 10px)"></span>
+      <span class="d" style="left:50%">’27.9</span><span class="m" style="left:calc(50% - 10px)"></span>
+      <span class="d" style="left:70%">’28.3</span><span class="m" style="left:calc(70% - 10px)"></span>
+      <span class="d" style="left:90%">’28.12</span><span class="m" style="left:calc(90% - 10px)"></span>
+    </div>
+    <div class="chev"><div class="n">준비</div><div class="s">1공장<br>시범</div><div class="n">모델<br>검증</div><div class="s">전 공장<br>확산</div><div class="n">정착·<br>고도화</div></div>
+    <div class="desc">
+      <div><div class="h">센서 설계·설치</div><div class="p">핵심 설비 선정<br>센서 1,200개 설치<br>데이터 표준 확정</div></div>
+      <div><div class="h">프레스 라인 적용</div><div class="p">베어링 모델 1종<br>경보 정확도 측정<br>정비팀 교육 시작</div></div>
+      <div><div class="h">모델 7종 완성</div><div class="p">모터·펌프 모델 추가<br>작업지시 자동 연계<br>오경보율 10% 이하</div></div>
+      <div><div class="h">2·3공장 확산</div><div class="p">공장별 담당 지정<br>계획 정비 회의 정례화<br>부품 재고 연동</div></div>
+      <div><div class="h">운영 체계 정착</div><div class="p">월간 지표 보고<br>모델 재학습 주기화<br>차기 설비 확대 검토</div></div>
+    </div>
+  </div>
+  <div class="pg">7</div>
+</section>
+
+<!-- 13 표 -->
+<section class="slide">
+  <div class="bar"><div class="no">03</div><div class="t"><small>추진 계획</small><h2>연차별 투자 계획</h2></div></div>
+  <div class="body">
+    <div class="sum">3년 총 <b style="color:var(--red)">18.6억 원</b>, 첫해 투자의 70%가 센서·인프라</div>
+    <div class="unit">(단위: 백만 원)</div>
+    <table>
+      <thead><tr><th style="text-align:left;padding-left:30px">항목</th><th>2027년</th><th>2028년</th><th>2029년</th><th>합계</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>센서·게이트웨이 설치</td><td>520</td><td>180</td><td>60</td><td>760</td><td>1공장 → 전 공장</td></tr>
+        <tr><td>데이터 플랫폼 구축·운영</td><td>160</td><td>140</td><td>140</td><td>440</td><td>클라우드 이용료 포함</td></tr>
+        <tr><td>예지 모델 개발 <span class="new">NEW</span></td><td>120</td><td>150</td><td>60</td><td>330</td><td>외부 협력 2종 포함</td></tr>
+        <tr><td>정비 프로세스·교육</td><td>40</td><td>60</td><td>60</td><td>160</td><td>교육 24시간/인</td></tr>
+        <tr><td>운영 인력(공장별 담당)</td><td>—</td><td>90</td><td>80</td><td>170</td><td>’28년부터 3명</td></tr>
+        <tr class="tot"><td>합계</td><td>840</td><td>620</td><td>400</td><td>1,860</td><td style="color:var(--ink);font-weight:400">투자 회수 2.4년</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="src">수치는 모두 가상입니다</div><div class="pg">8</div>
+</section>
+
+<!-- 16 마무리 -->
+<section class="slide end">
+  <h1>감사합니다</h1>
+  <p>고장은 갑자기 오지 않습니다.<br><em>신호를 읽는 정비</em>로 바꾸는 데 3년이면 충분합니다.</p>
+  <div class="contact"><b>문의</b>생산기술팀 예지보전 TF · 내선 4120 · pdm-tf@example.com</div>
 </section>
 
 </body>
