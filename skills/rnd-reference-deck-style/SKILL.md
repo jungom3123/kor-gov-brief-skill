@@ -13,7 +13,7 @@ description: 한국 정부 R&D 부처합동설명회 발표자료 283개 중 32�
 - `references/README.md` — 100장 갤러리(출처·스타일 계열·유형별 핵심 규칙)
 - `references/style-families.md` — 스타일 계열 6종의 특징과 대표 원본
 
-이 폴더에 `references/`가 없으면(계정 스킬로만 저장된 경우) 갤러리는 https://github.com/jungom3123/rnd-reference-deck-style/blob/main/skills/rnd-reference-deck-style/references/README.md 에서 본다.
+이 폴더에 `references/`가 없으면(계정 스킬로만 저장된 경우) 갤러리는 https://github.com/jungom3123/kor-gov-brief-skill/blob/main/skills/rnd-reference-deck-style/references/README.md 에서 본다.
 
 모든 치수는 **1920×1080px 기준**이다. pptx로 만들 때는 px ÷ 2 = pt (13.33×7.5in 슬라이드).
 

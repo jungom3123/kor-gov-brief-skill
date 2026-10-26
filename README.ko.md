@@ -1,4 +1,4 @@
-# rnd-reference-deck-style
+# kor-gov-brief-skill
 
 [English](README.md) · **한국어**
 
@@ -46,9 +46,9 @@
 ### Claude Code
 
 ```bash
-git clone https://github.com/jungom3123/rnd-reference-deck-style.git
+git clone https://github.com/jungom3123/kor-gov-brief-skill.git
 mkdir -p ~/.claude/skills
-cp -r rnd-reference-deck-style/skills/rnd-reference-deck-style ~/.claude/skills/
+cp -r kor-gov-brief-skill/skills/rnd-reference-deck-style ~/.claude/skills/
 ```
 
 한 프로젝트에서만 쓰려면 `~/.claude/skills/` 대신 그 프로젝트의 `.claude/skills/`에 복사하세요.
@@ -56,7 +56,7 @@ cp -r rnd-reference-deck-style/skills/rnd-reference-deck-style ~/.claude/skills/
 ### Claude 앱 (claude.ai)
 
 ```bash
-cd rnd-reference-deck-style/skills
+cd kor-gov-brief-skill/skills
 zip -r rnd-reference-deck-style.zip rnd-reference-deck-style
 ```
 
@@ -85,7 +85,7 @@ Claude는 용도에 맞는 스타일 계열을 고르고, 슬라이드마다 레
 ## 레포 구성
 
 ```text
-rnd-reference-deck-style/
+kor-gov-brief-skill/
 ├── skills/rnd-reference-deck-style/   ← 이 폴더가 스킬 본체
 │   ├── SKILL.md                       디자인 규칙과 작업 순서
 │   └── references/
