@@ -15,7 +15,7 @@
 
 ![Nine example slides](docs/example-overview.jpg)
 
-[Browse all 100 reference layouts](skills/rnd-reference-deck-style/references/README.md) · [Example deck (HTML)](examples/sample-deck.html) · [Read SKILL.md](skills/rnd-reference-deck-style/SKILL.md)
+[Browse all 100 reference layouts](skills/rnd-reference-deck-style/references/README.md) · [Example deck (HTML)](examples/sample-deck.html) · [Design system + PowerPoint template](skills/rnd-reference-deck-style/design-system/README.md) · [Read SKILL.md](skills/rnd-reference-deck-style/SKILL.md)
 
 ---
 
@@ -88,10 +88,11 @@ Claude picks a style family for the use case, assigns a layout type to each slid
 kor-gov-brief-skill/
 ├── skills/rnd-reference-deck-style/   ← the skill itself
 │   ├── SKILL.md                       design rules and workflow
-│   └── references/
-│       ├── README.md                  layout gallery (100 pages, with sources and per-type rules)
-│       ├── style-families.md          the 6 style families
-│       └── layouts/01_표지 … 16_마무리/
+│   ├── references/
+│   │   ├── README.md                  layout gallery (100 pages, with sources and per-type rules)
+│   │   ├── style-families.md          the 6 style families
+│   │   └── layouts/01_표지 … 16_마무리/
+│   └── design-system/                 tokens, slide CSS kit, component docs, PowerPoint template
 ├── examples/
 │   ├── sample-deck.html               9-slide example built from the rules
 │   └── images/
@@ -106,5 +107,5 @@ Fork the repo and change the colors and the font under **2. 기본 틀** (base f
 
 ## License and sources
 
-- `SKILL.md`, the docs, and `examples/` are [MIT licensed](LICENSE). The example slides were made from the rules alone, with no reference images.
+- `SKILL.md`, the docs, `design-system/`, and `examples/` are [MIT licensed](LICENSE). The example slides were made from the rules alone, with no reference images.
 - The 100 images in `references/layouts/` are **not covered by MIT**. Rights stay with the issuing agencies and original creators. They are here for design study only. See [NOTICE.md](NOTICE.md) for sources and takedown requests.

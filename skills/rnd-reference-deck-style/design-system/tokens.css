@@ -1,0 +1,16 @@
+/* Brief Deck — generated from tokens.json */
+:root,[data-theme="light"]{--surface:#ffffff;--surface-tint:#eaf1fa;--surface-neutral:#f1f3f6;--surface-total:#fdf0ec;--ink:#1f2937;--ink-muted:#5b6577;--heading:#1d3466;--primary:#1d3466;--on-primary:#ffffff;--accent:#2a70be;--on-accent:#ffffff;--accent-inverse:#8fc1f2;--sky:#8fc1f2;--gray:#8a94a6;--rule:#d6e0ee;--signal:#e1614f;--on-signal:#ffffff;--highlight:#ffd400;--chart-1:#1d3466;--chart-2:#2a70be;--chart-3:#8fc1f2;--chart-4:var(--gray);--cat-1:#5b7b3a;--cat-2:#1e8a86;--cat-3:#2a70be;--cat-4:#6657b5}
+[data-theme="dark"]{--surface:#1d3466;--surface-tint:#2a4580;--surface-neutral:#2f3f66;--surface-total:#3b3f6b;--ink:#ffffff;--ink-muted:#c9d4e5;--heading:#ffffff;--primary:#2a70be;--on-primary:#ffffff;--accent:#8fc1f2;--on-accent:#1d3466;--accent-inverse:#ffd400;--sky:#8fc1f2;--gray:#8a94a6;--rule:#3a5490;--signal:#ff8a78;--on-signal:#1d3466;--highlight:#ffd400;--chart-1:#ffffff;--chart-2:#8fc1f2;--chart-3:#4f86c9;--chart-4:var(--gray);--cat-1:#5b7b3a;--cat-2:#1e8a86;--cat-3:#2a70be;--cat-4:#6657b5}
+:root{--space-margin-x:80px;--space-margin-y:60px;--space-block:36px;--space-card-gap:32px;--space-card-gap-dense:26px;--space-card-pad:40px;--space-inline:16px;--space-xs:8px;--radius-sm:8px;--radius-card:16px;--radius-pill:999px;--canvas-w:1920px;--canvas-h:1080px;--content-w:1760px;--titlebar-h:130px;--pill-h:64px;--band-h:200px;--font-sans:Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif}
+.t-cover{font-family:var(--font-sans);font-size:96px;line-height:1.15;font-weight:700;letter-spacing:-0.02em}
+.t-section-no{font-family:var(--font-sans);font-size:160px;line-height:1;font-weight:700;}
+.t-section{font-family:var(--font-sans);font-size:88px;line-height:1.15;font-weight:700;}
+.t-title{font-family:var(--font-sans);font-size:58px;line-height:1.2;font-weight:700;}
+.t-headline{font-family:var(--font-sans);font-size:52px;line-height:1.3;font-weight:700;}
+.t-number{font-family:var(--font-sans);font-size:120px;line-height:1;font-weight:700;letter-spacing:-0.02em}
+.t-card-head{font-family:var(--font-sans);font-size:36px;line-height:1.3;font-weight:700;}
+.t-body{font-family:var(--font-sans);font-size:32px;line-height:1.45;font-weight:400;}
+.t-body-sub{font-family:var(--font-sans);font-size:24px;line-height:1.45;font-weight:400;}
+.t-table{font-family:var(--font-sans);font-size:26px;line-height:1.4;font-weight:400;}
+.t-chart{font-family:var(--font-sans);font-size:24px;line-height:1.3;font-weight:700;}
+.t-caption{font-family:var(--font-sans);font-size:20px;line-height:1.4;font-weight:400;}
