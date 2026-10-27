@@ -12,6 +12,7 @@ description: 한국 정부 R&D 부처합동설명회 발표자료 283개 중 32�
 - `references/layouts/<번호_유형>/` — 유형별 좋은 사례 100장(가로 960px). 파일명 `<순번>_<연도>_<원본 파일명 일부>_p<쪽>.jpg`
 - `references/README.md` — 100장 갤러리(출처·스타일 계열·유형별 핵심 규칙)
 - `references/style-families.md` — 스타일 계열 6종의 특징과 대표 원본
+- `design-system/` — 이 규칙을 값과 부품으로 옮긴 Brief Deck 디자인 시스템: `tokens.json`·`tokens.css`(색·글자·간격), `brief-deck.css`(HTML 슬라이드 부품 13종), `components.md`, `template/BriefDeck_template.pptx`(PowerPoint 템플릿)
 
 이 폴더에 `references/`가 없으면(계정 스킬로만 저장된 경우) 갤러리는 https://github.com/jungom3123/kor-gov-brief-skill/blob/main/skills/rnd-reference-deck-style/references/README.md 에서 본다.
 
@@ -129,7 +130,7 @@ description: 한국 정부 R&D 부처합동설명회 발표자료 283개 중 32�
 1. 주제·청중·참고자료로 용도를 정하고 §1에서 계열 하나를 고른다. 브랜드 색을 받으면 D 방식으로 네이비만 교체.
 2. 슬라이드 구성안을 짜고 페이지마다 레이아웃 유형(01~16)을 지정한다. 페이지마다 핵심 문장 1줄을 먼저 쓴다.
 3. 쓸 유형의 `references/layouts/` 이미지를 열어 구도·여백·위계만 본다. 내용·그림·로고·문구는 가져오지 않는다.
-4. §2~4 치수로 만든다. HTML이면 `.slide{width:1920px;height:1080px}` 고정, pptx면 px÷2 pt. 글꼴이 없으면 시스템 고딕으로 대체.
+4. §2~4 치수로 만든다. HTML이면 `design-system/tokens.css`와 `brief-deck.css`를 불러와 `.bd-slide`(1920×1080 고정)와 `bd-*` 부품으로 조립한다. pptx면 `design-system/template/BriefDeck_template.pptx`의 레이아웃에서 시작하고, 직접 그릴 때는 px÷2 pt. 글꼴이 없으면 시스템 고딕으로 대체.
 5. 만든 뒤 점검: 핵심어 색이 한 장에 4개 이하인가, 포인트 레드가 3곳 이하인가, 한 장에 표가 1개인가, 글자 22px 미만이 출처·단위뿐인가, 카드 간격이 같은가.
 
 ## 7. 하지 않는 것

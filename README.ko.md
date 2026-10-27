@@ -15,7 +15,7 @@
 
 ![예시 슬라이드 9장](docs/example-overview.jpg)
 
-[레이아웃 갤러리 100장 보기](skills/rnd-reference-deck-style/references/README.md) · [예시 HTML 원본](examples/sample-deck.html) · [SKILL.md 읽기](skills/rnd-reference-deck-style/SKILL.md)
+[레이아웃 갤러리 100장 보기](skills/rnd-reference-deck-style/references/README.md) · [예시 HTML 원본](examples/sample-deck.html) · [디자인 시스템·PowerPoint 템플릿](skills/rnd-reference-deck-style/design-system/README.md) · [SKILL.md 읽기](skills/rnd-reference-deck-style/SKILL.md)
 
 ---
 
@@ -88,10 +88,11 @@ Claude는 용도에 맞는 스타일 계열을 고르고, 슬라이드마다 레
 kor-gov-brief-skill/
 ├── skills/rnd-reference-deck-style/   ← 이 폴더가 스킬 본체
 │   ├── SKILL.md                       디자인 규칙과 작업 순서
-│   └── references/
-│       ├── README.md                  레이아웃 갤러리 (100장, 출처·유형별 규칙)
-│       ├── style-families.md          스타일 계열 6종
-│       └── layouts/01_표지 … 16_마무리/
+│   ├── references/
+│   │   ├── README.md                  레이아웃 갤러리 (100장, 출처·유형별 규칙)
+│   │   ├── style-families.md          스타일 계열 6종
+│   │   └── layouts/01_표지 … 16_마무리/
+│   └── design-system/                 토큰, 슬라이드 CSS, 부품 문서, PowerPoint 템플릿
 ├── examples/
 │   ├── sample-deck.html               규칙만으로 만든 예시 9장 (HTML)
 │   └── images/                        예시 슬라이드 이미지
@@ -106,6 +107,6 @@ kor-gov-brief-skill/
 
 ## 라이선스와 출처
 
-- `SKILL.md`, 문서, `examples/`는 [MIT 라이선스](LICENSE)입니다. 예시 슬라이드는 레퍼런스 이미지를 쓰지 않고 규칙만으로 새로 만들었습니다.
+- `SKILL.md`, 문서, `design-system/`, `examples/`는 [MIT 라이선스](LICENSE)입니다. 예시 슬라이드는 레퍼런스 이미지를 쓰지 않고 규칙만으로 새로 만들었습니다.
 - `references/layouts/`의 이미지 100장은 **MIT 대상이 아니며** 각 기관에 권리가 있습니다. 디자인 공부용으로만 두었고, 자세한 내용과 삭제 요청 방법은 [NOTICE.md](NOTICE.md)에 있습니다.
 
